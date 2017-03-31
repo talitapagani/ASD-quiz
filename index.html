@@ -4,49 +4,60 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 	<title>Quiz sobre o Transtorno do Espectro do Autismo</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet">
 	<link rel="stylesheet" href="css/main.css" type="text/css"/>
+    <script src="https://use.fontawesome.com/342d438604.js"></script>
 	<script src="js/jquery-1.11.1.js"></script>
     <script src="https://cloud.github.com/downloads/wycats/handlebars.js/handlebars-1.0.rc.1.min.js"></script>
 	<script src="js/app.js"></script>
 </head>
 <body>
-    <div class="container">
-        
-        <main id="quizBody">
-            <div class="intro">
-                <h1>O quanto você sabe sobre Autismo?</h1>
-                <p>Há muitos equívocos sobre o Transtorno do Espectro do Autismo.</p>
-                <p>Você sabe distinguir fato de ficção? Vamos descobrir!</p>
-                <button id="startBtn">Comece o Quiz!</button>
-            </div>
-            <div class="question">
-                <h1>Questão <span class="qNum"></span> of 5</h1><br /><br/>
-                <div id="quizQuestion"></div><br/>
-                <ul class="qOptions">
-                    <script id="answers-template" type="x-handlebars-template">
-                        {{#each options}}
-                            <li><span>{{this.choice}}</span></li>
-                        {{/each}}
-                    </script>
-                </ul><br/>
-            </div>
-            <div class="answer">
-                <h1 class="result"></h1><br/><br/>
-                <div class="answerInfo"></div>
-                <button id="nextBtn">Próxima questão</button><br/>
-                <div class="answerTrack">Você acertou <span class="answerCount">0</span> de 5 questões!</div>
-            </div>
-            <div class="end">
-                <h1>Por enquanto é só pessoal!</h1>
-                <h2 class="report"></h2>
-                <p>Obrigada por fazer este quiz! Ele foi criado pela <a href="https://github.com/cdeeter">Celia Deeter</a> e traduzido livremente pela <a href="http://talitapagani.com">Talita Pagani</a> para promover a conscientização sobre o Autismo em um esforço para reduzir o estigma sobre esta condição. Há vários sites onde você obter mais informações sobre o Autismo e você pode começar por <a href="http://autismoerealidade.org/informe-se/sobre-o-autismo/o-que-e-autismo/" target="_blank">este artigo do site Autismo e Realidade</a>.</p>
-                <p>Você também pode aprender um pouco mais sobre como desenvolver sites mais adequados a pessoas com Autismo conferindo <a href="https://www.researchgate.net/project/GAIA-Guidelines-of-Accessible-Interfaces-for-people-with-Autism">os trabalhos publicados pela Talita Pagani</a>, desenvolvidos durante o mestrado dela.</p>
-                <p>Se você quiser ajudar, <a href="http://autismoerealidade.org/instituicoes/" target="_blank">confira esta lista com várias instituições de apoio a pessoas com Autismo</a>!</p>
-                <button id="restartBtn">Tentar novamente!</button> <br/><br/>
-                <small>Estatísticas fornecidas pelo <a href="http://www.cdc.gov/ncbddd/autism/data.html" target="_blank">CDC - Centro para Controle e Prevenção de Doenças dos Estados Unidos</a>.</small>
-            </div>
-        </main>
+    <div class="ribbon"></div>
 
-    </div>
+    <header>
+        <img src="images/logo-quiz-autismo.png" alt="Quiz sobre Autismo">
+    </header>
+    
+    <main id="quizBody">
+        <div class="intro">
+            <h1>O quanto você sabe sobre Autismo?</h1>
+            <p>Há muitos equívocos sobre o Transtorno do Espectro do Autismo.</p>
+            <p>Você sabe distinguir fato de ficção? Vamos descobrir!</p>
+            <button id="startBtn">Comece o Quiz!</button>
+        </div>
+        <div class="progressBar">
+            <span class="progressBar-question question-1"></span>
+            <span class="progressBar-question question-2"></span>
+            <span class="progressBar-question question-3"></span>
+            <span class="progressBar-question question-4"></span>
+            <span class="progressBar-question question-5"></span>
+        </div>
+        <div class="question">
+            <h1>Questão <span class="qNum"></span> de 5</h1>
+            <div id="quizQuestion"></div>
+            <ul class="qOptions">
+                <script id="answers-template" type="x-handlebars-template">
+                    {{#each options}}
+                        <li><span>{{this.choice}}</span></li>
+                    {{/each}}
+                </script>
+            </ul>
+        </div>
+        <div class="answer">
+            <h1 class="result"></h1>
+            <div class="answerInfo"></div>
+            <button id="nextBtn">Próxima questão</button><br/>
+            <div class="answerTrack">Você acertou <span class="answerCount">0</span> de 5 questões!</div>
+        </div>
+        <div class="end">
+            <h1>Por enquanto é só pessoal!</h1>
+            <h2 class="report"></h2>
+            <p>Obrigada por fazer este quiz! Ele foi criado pela <a href="https://github.com/cdeeter">Celia Deeter</a> e traduzido livremente pela <a href="http://talitapagani.com">Talita Pagani</a> para promover a conscientização sobre o Autismo em um esforço para reduzir o estigma sobre esta condição. Há vários sites onde você obter mais informações sobre o Autismo e você pode começar por <a href="http://autismoerealidade.org/informe-se/sobre-o-autismo/o-que-e-autismo/" target="_blank">este artigo do site Autismo e Realidade</a>.</p>
+            <p>Você também pode aprender um pouco mais sobre como desenvolver sites mais adequados a pessoas com Autismo conferindo <a href="https://www.researchgate.net/project/GAIA-Guidelines-of-Accessible-Interfaces-for-people-with-Autism">os trabalhos publicados pela Talita Pagani</a>, desenvolvidos durante o mestrado dela.</p>
+            <p>Se você quiser ajudar, <a href="http://autismoerealidade.org/instituicoes/" target="_blank">confira esta lista com várias instituições de apoio a pessoas com Autismo</a>!</p>
+            <button id="restartBtn">Tentar novamente!</button> <br/><br/>
+            <small>Estatísticas fornecidas pelo <a href="http://www.cdc.gov/ncbddd/autism/data.html" target="_blank">CDC - Centro para Controle e Prevenção de Doenças dos Estados Unidos</a>.</small>
+        </div>
+    </main>
 </body>
 </html>

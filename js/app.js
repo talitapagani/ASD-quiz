@@ -4,6 +4,8 @@ $(document).ready(function(){
         correctAnswers = 0,
         intro = $(".intro"),
         question = $(".question"),
+        progressBar = $(".progressBar"),
+        progressBarQuestion = $(".progressBar-question"),
         questionTracker = $(".qNum"),
         questionText = $("#quizQuestion"),
         questionOpts = $(".qOptions"),
@@ -97,7 +99,10 @@ $(document).ready(function(){
     //begin quiz
     startBtn.on('click',function(){
         intro.hide();
+        progressBarQuestion.removeClass("progressBar-question-current progressBar-question-correct progressBar-question-incorrect").html("");
+        progressBarQuestion.first().addClass("progressBar-question-current");
         questionTracker.text(questionNum+1);
+        progressBar.fadeIn(600);
         question.fadeIn(600);
         delayAnswers(500);
     });
@@ -110,8 +115,10 @@ $(document).ready(function(){
             answerKeyTemplate = Handlebars.compile(answerKeySource);
         if (selectedAnswer === correctAnswer) {
             result.text("Correto!");
+            progressBarQuestion.eq(questionNum).removeClass("progressBar-question-current").addClass("progressBar-question-correct").html("<i class=\"fa fa-check\"></i>");
             correctAnswers++;
         } else {
+            progressBarQuestion.eq(questionNum).removeClass("progressBar-question-current").addClass("progressBar-question-incorrect").html("<i class=\"fa fa-times\"></i>");
             result.html("Incorreto. A resposta correta era: <br/>"+correctAnswer);
         }
         answerCount.text(correctAnswers);
@@ -123,8 +130,9 @@ $(document).ready(function(){
     //next question
     nextBtn.on("click",function() {
         questionNum++;
+        progressBarQuestion.eq(questionNum).addClass("progressBar-question-current");
         if (questionNum === 4) {
-            nextBtn.text("Ver resultados");
+            nextBtn.text("Finalizar Quiz");
         }
         if (questionNum <= 4) {
             questionTracker.empty().text(questionNum+1);
@@ -152,6 +160,8 @@ $(document).ready(function(){
         questionNum = 0;
         correctAnswers = 0;
         questionTracker.empty().text(questionNum+1);
+        progressBarQuestion.removeClass("progressBar-question-current progressBar-question-correct progressBar-question-incorrect").html("");
+        progressBarQuestion.first().addClass("progressBar-question-current");
         questionText.empty().append(template({question: questionList.items[questionNum].question}));
         questionOpts.empty().append(answerTemplate(questionList.items[questionNum]));
         quizEnd.hide();
