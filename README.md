@@ -1,3 +1,2 @@
-# ASD-quiz
-A quiz I created to spread awareness about Autism, inspired by my work in special education.
-One of my first projects, improved using Handlebar.js templating engine.
+# Quiz sobre Autismo
+Um quiz utilizando Handlebars.js para promover a conscientização sobre o Autismo. Tradução e adaptação do [projeto original de Celia Deeter](https://github.com/cdeeter/ASD-quiz).
